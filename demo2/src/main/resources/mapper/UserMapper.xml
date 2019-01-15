@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.StudentMapper">
+	<resultMap type="com.example.demo.entity.Student" id="student">
+		<id column="userName" property="userName" />
+		<result column="passWord" property="passWord" />
+		<result column="age" property="age" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		userName,passWord,age
+	</sql>
+
+	<select id="findStudentByUserName"
+		parameterType="java.lang.String" resultMap="student">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		Student
+		where
+		userName = #{userName}
+	</select>
+
+	<select id="findStudents" resultMap="student"
+		parameterType="com.example.demo.entity.Student">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		Student
+		WHERE
+		1 = 1
+	</select>
+
+	
+
+	
+</mapper>
